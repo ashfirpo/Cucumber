@@ -1,0 +1,57 @@
+[
+  {
+    "idPlanta": "acelga",
+    "nombre": "Acelga",
+    "descripcion": "Es un cultivo sencillo y no requiere muchos cuidados. El clima templado es ideal para el cultivo ecológico de acelgas.",
+    "riego": "2 días",
+    "maceta": 22,
+    "plantar": [1, 8, 9, 10, 11, 12],
+    "cosechar": [1, 2, 3, 4, 5, 12],
+    "extra": {
+      "p1": "Mantener siempre la humedad, pero sin inundar. Un riego por goteo es recomendable para este tipo de cultivo.",
+      "p2": "Las acelgas requieren nitrógeno, que puede ser aportado mediante humus de lombriz o compost. Cualquiera de estos tiene que ser añadido con frecuencia: cuanto más abonada esté la acelga, más grandes van a ser sus hojas."
+    }
+  },
+
+  {
+    "idPlanta": "ajo",
+    "nombre": "Ajo",
+    "descripcion": "Cultivar ajos es muy fácil, pero primero se tiene que saber bien qué tipo o variedad de ajo es el que se va a plantar. Particularmente el ajo necesita de una maceta grande, ya que sus raíces son muy profundas.",
+    "riego": "15 días",
+    "maceta": 3,
+    "plantar": [1,2, 3, 11, 12],
+    "cosechar": [6, 7, 8],
+    "extra": {
+      "p1": "<p>Pasos para sembrar el ajo:</p> <p>1. Separar los dientes del ajo dejando la cáscara intacta.</p> <p>2. Llenar con tierra el contenedor o maceta y dejar al menos 1 centímetro antes del borde.</p> <p>3. Colocar los dientes de ajo en el contenedor o maceta, enterrarlos al menos a 10 centímetros de la superficie y con la parte puntiaguda hacia arriba.</p> <p>4. Colocar el recipiente en un lugar soleado (alguna ventana puede servir) para que esté al sol al menos 8 horas al día.</p>",
+      "p2": "Aunque también se puede hacer durante el invierno, con los cuidados necesarios, es recomendable que se cultive en climas cálidos. La cosecha se produce cuando las hojas del exterior empiezan a tomar color marrón. Una vez cosechado, colocar el ajo en un lugar fresco y seco durante una semana, después de esto, ya está listo para consumir."
+    }
+  },
+
+  {
+    "idPlanta": "albahaca",
+    "nombre": "Albahaca",
+    "descripcion": "Además de aportar aroma y sabor a las comidas, la albahaca también es una flora auxiliar, esto significa que ayuda a combatir plagas en el huerto. Se planta en los exteriores en primavera, una vez que pasan las heladas.",
+    "riego": "2 días",
+    "maceta": 5,
+    "plantar": [9, 10, 11, 12],
+    "cosechar": [1, 2, 3, 4, 12],
+    "extra": {
+      "p1": "Es una planta que se cultiva de forma anual, y generalmente suele morir después de la floración. Si se quiere extender su vida un poco más, lo recomendable es no dejarla florecer. De todas formas, siempre se puede reproducir a la albahaca para tener varias plantas de ella.",
+      "p2": "Al momento de plantar la albahaca, hay que tener en cuenta que les gusta mucho el sol, un suelo rico en materia orgánica y la humedad."
+    }
+  },
+
+  {
+    "idPlanta": "apio",
+    "nombre": "Apio",
+    "descripcion": "El apio requiere atención en sus primeros 5 meses hasta que llega a su madurez y ser una planta comestible. Si no se le brindan los cuidados adecuados, la planta puede producir un tallo muy fibroso y que sea imposible de comer.",
+    "riego": "2 días",
+    "maceta": 9,
+    "plantar": [4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "cosechar": [4, 5, 6, 7, 8, 9, 10, 11],
+    "extra": {
+      "p1": "Es importante saber que esta planta necesita 5 meses de frío para madurar adecuadamente. También es conveniente plantarla primero en una maceta en ambiente de interior y luego transplantarla a tierra firme. Para transplantar a tierra, es importante conseguir un lugar bien soleado y con un buen sistema de drenaje.",
+      "p2": "Los tallos de apio están listos para la cosecha cuando alcanzan aproximadamente los 15-20 cm de altura, aunque se los puede dejar crecer más. Se pueden retirar los tallos externos primero para que los internos sigan creciendo."
+    }
+  }
+]

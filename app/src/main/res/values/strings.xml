@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Cucumber</string>
+    <string name="title_activity_plantas">Listado de Plantas</string>
+    <string name="title_activity_preferencias">Preferencias</string>
+    <string name="title_activity_mi_jardin">Mi Jardín</string>
+    <string name="title_activity_descripcion">DescripcionActivity</string>
+    <string name="title_activity_registrarse">Registrarse</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="retrofit_server">https://so-unlam.net.ar/api/</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>

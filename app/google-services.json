@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "617173974676",
+    "firebase_url": "https://cucumber-850cb.firebaseio.com",
+    "project_id": "cucumber-850cb",
+    "storage_bucket": "cucumber-850cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617173974676:android:110f35796fbd98bf283e81",
+        "android_client_info": {
+          "package_name": "com.example.cucumber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617173974676-136gr3bfm1dl36bv8sq620no6oa8o2eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Ji7qxridpAOz2l8nBc6dR6elCzPqjq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617173974676-136gr3bfm1dl36bv8sq620no6oa8o2eh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
