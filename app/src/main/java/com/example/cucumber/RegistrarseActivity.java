@@ -2,17 +2,28 @@ package com.example.cucumber;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cucumber.API.SOARequest;
 import com.example.cucumber.API.SOAResponse;
-import com.example.cucumber.servicios.SOAService;
+import com.example.cucumber.API.SOAService;
+import com.example.cucumber.API.SessionManager;
+import com.example.cucumber.Firebase.Firebase;
+import com.example.cucumber.Firebase.Usuario;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,26 +33,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
-    private EditText txtNombre;
-    private EditText txtApellido;
-    private EditText txtDNI;
-    private EditText txtEmail;
-    private EditText txtPass;
-    private EditText txtComision;
+    private SessionManager sessionManager;
+    private DatabaseReference reference;
+    private Usuario user;
 
+    private EditText txtNombre, txtApellido, txtDNI, txtEmail, txtPass, txtComision;
     private Button btnRegistrarse;
-
-    private TextView lblToken;
-    private TextView lblTokenRefresh;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
 
+        sessionManager = new SessionManager(getApplicationContext());
+
+        reference = Firebase.getFirebaseDatabase().getReference("/users/");
+
         configurarElementos();
     }
+
 
     private void configurarElementos() {
         txtNombre = findViewById(R.id.txtNombre);
@@ -52,76 +64,147 @@ public class RegistrarseActivity extends AppCompatActivity {
         txtComision = findViewById(R.id.txtComision);
         btnRegistrarse = findViewById(R.id.btnRegistrar);
 
-        lblToken = findViewById(R.id.lblToken);
-        lblTokenRefresh = findViewById(R.id.lblTokenRefresh);
-
-        setearListeners();
+        btnRegistrarse.setOnClickListener(botonListener);
+        txtApellido.addTextChangedListener(tw);
+        txtComision.addTextChangedListener(tw);
+        txtDNI.addTextChangedListener(tw);
+        txtEmail.addTextChangedListener(tw);
+        txtNombre.addTextChangedListener(tw);
+        txtPass.addTextChangedListener(tw);
     }
 
-    private void setearListeners()
+    View.OnClickListener botonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(hayConexion())
+                crearRequest();
+            else
+                Snackbar.make(v, "No hay conexión a Internet", BaseTransientBottomBar.LENGTH_INDEFINITE);
+        }
+    };
+
+    TextWatcher tw = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+
+    private boolean hayConexion()
     {
-        btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected())
+            return true;
+        return false;
+    }
+
+
+
+    private boolean verificarCampos()
+    {
+        if(txtNombre.getText().toString().equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Falta ingresar Nombre", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(txtApellido.getText().toString().equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Falta ingresar Apellido", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(txtDNI.getText().toString().equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Falta ingresar DNI", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(txtEmail.getText().toString().equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Falta ingresar Email", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(txtPass.getText().toString().equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Falta ingresar Contraseña", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(txtPass.getText().toString().length() < 8)
+        {
+            Toast.makeText(getApplicationContext(), "La contraseña debe ser mayor a 8 caracteres", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(txtComision.getText().toString().equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Falta ingresar Comisión", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+
+    private void crearRequest()
+    {
+        SOARequest request = new SOARequest();
+        request.setEnv("TEST");
+        request.setName(txtNombre.getText().toString());
+        request.setLastname(txtApellido.getText().toString());
+        request.setDni(Long.parseLong(txtDNI.getText().toString()));
+        request.setEmail(txtEmail.getText().toString());
+        request.setPassword(txtPass.getText().toString());
+        request.setCommission(Long.parseLong(txtComision.getText().toString()));
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(getString(R.string.retrofit_server)).build();
+
+        SOAService service = retrofit.create(SOAService.class);
+
+        Call<SOAResponse> call = service.register(request);
+        call.enqueue(new Callback<SOAResponse>() {
             @Override
-            public void onClick(View v) {
+            public void onResponse(Call<SOAResponse> call, Response<SOAResponse> response) {
+                if(response.isSuccessful())
+                {
+                    user = new Usuario();
+                    user.setEmail(request.getEmail());
+                    agregarUsuario(user);
 
-                //Instanciamos el objeto SOARequest
+                    sessionManager.guardarEmail(request.getEmail());
+                    sessionManager.guardarToken(response.body().getToken());
+                    sessionManager.guardarTokenRefresh(response.body().getToken_refresh());
 
-                SOARequest request = new SOARequest();
-                request.setEnv("TEST");
-                request.setName(txtNombre.getText().toString());
-                request.setLastname(txtApellido.getText().toString());
-                request.setDni(Long.parseLong(txtDNI.getText().toString()));
-                request.setEmail(txtEmail.getText().toString());
-                request.setPassword(txtPass.getText().toString());
-                request.setCommission(Long.parseLong(txtComision.getText().toString()));
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Error en el Registro", Toast.LENGTH_LONG).show();
+                }
+            }
 
-                //Configuracion de Retrofit
+            @Override
+            public void onFailure(Call<SOAResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Falló la Registración", Toast.LENGTH_LONG).show();
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .baseUrl(getString(R.string.retrofit_server)).build();
-
-                //Creamos el servicio en donde le pasamos la interface que creamos
-                SOAService soaService = retrofit.create(SOAService.class);
-
-                //Para empezar a generar una lista de llamados/peticiones, trabajamos con enqueue
-                //Retrofit encola cada una de las peticiones y las va encolando de manera asincronica
-                //sincronizandose con el hilo principal
-                //Se encola un callback, que va a ejecutar la peticion, y cuando tenga la respuesta del servidor
-                //va a salirpor "onResponse" o por "onFailed". Si hay respuesta, sea cual sea, cae en OnResponse
-                //Despues vemos dentro de onResponse si falló o no. onFailed es mas para algun error en las configuraciones a nivel
-                //software, si no se mapea bien el objeto o esta mal configurado el servicio, cosas como esas.
-
-
-                Call<SOAResponse> call = soaService.register(request);
-                call.enqueue((new Callback<SOAResponse>() {
-                    @Override
-                    public void onResponse(Call<SOAResponse> call, Response<SOAResponse> response) {
-
-                        if(response.isSuccessful())
-                        {
-                            //todo bien
-                            Log.i("Cucumber | Retrofit", "Response exitoso en ambiente: " + response.body().getEnv());
-                            Toast.makeText(RegistrarseActivity.this, "Retrofit OK!", Toast.LENGTH_LONG);
-                            lblToken.setText(response.body().getToken());
-                            lblTokenRefresh.setText(response.body().getToken_refresh());
-                        }
-                        else
-                        {
-                            Log.i("Cucumber | Retrofit", "Response fallido en ambiente: " + response.body().getEnv());
-                            Toast.makeText(RegistrarseActivity.this, "Retrofit FAILED!", Toast.LENGTH_LONG);
-                            lblToken.setText("Respuesta del servidor:");
-                            lblTokenRefresh.setText(response.errorBody().toString());
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<SOAResponse> call, Throwable t) {
-
-                    }
-                }));
             }
         });
+    }
+
+    private void agregarUsuario(Usuario user)
+    {
+        reference.push().setValue(user);
     }
 }

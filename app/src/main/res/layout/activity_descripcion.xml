@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/CucumberTheme.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -21,7 +21,9 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar"/>
+            app:toolbarId="@id/app_bar">
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,19 +33,23 @@
         android:layout_below="@+id/app_bar"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="-1dp"
-        android:layout_marginBottom="-3dp">
+        android:layout_marginBottom="-3dp"
+        android:scrollbarStyle="outsideOverlay">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
 
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -51,24 +57,97 @@
                     android:divider="@color/design_default_color_on_secondary"
                     android:dividerPadding="30dp"
                     android:fitsSystemWindows="true"
-                    android:gravity="center"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/lblFrecuenciaRiego"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="2 días"
+                            android:textSize="30sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/lblMaceta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="22 L"
+                            android:textSize="30sp" />
+                    </TableRow>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Riego cada" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Tamaño de maceta" />
+                    </TableRow>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="12dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/lblFrecuenciaRiego"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/textView14"
+                        android:layout_width="@dimen/anchoTitulosCalendario"
                         android:layout_height="wrap_content"
-                        android:text="2 días"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/lblMaceta"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="22 L"
-                        android:textSize="30sp" />
-
+                        android:text="Meses"
+                        android:textAlignment="center" />
                 </TableRow>
 
                 <TableRow
@@ -77,31 +156,482 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Riego cada" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tamaño de maceta" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt1"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt2"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt3"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt4"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt5"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt6"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="6"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt7"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="7"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt8"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="8"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt9"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="9"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt10"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt11"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="11"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txt12"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textAlignment="center" />
+                    </TableRow>
                 </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="@dimen/anchoTitulosCalendario"
+                        android:layout_height="wrap_content"
+                        android:text="Sembrar"
+                        android:textAlignment="center" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS1"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS2"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS3"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS4"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS5"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS6"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="6"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS7"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="7"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS8"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="8"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS9"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="9"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS10"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS11"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="11"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtS12"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textAlignment="center" />
+                    </TableRow>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="@dimen/anchoTitulosCalendario"
+                        android:layout_height="wrap_content"
+                        android:text="Cosechar"
+                        android:textAlignment="center" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC1"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC2"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC3"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC4"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC5"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC6"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="6"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC7"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="7"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC8"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="8"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC9"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="9"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC10"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC11"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="11"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtC12"
+                            android:layout_width="@dimen/anchoMeses"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textAlignment="center" />
+                    </TableRow>
+                </TableRow>
             </TableLayout>
 
             <TextView
                 android:id="@+id/txtDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Descripcion" />
 
             <TextView
                 android:id="@+id/txtExtras"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Extras" />
         </LinearLayout>
     </ScrollView>
@@ -110,11 +640,15 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="339dp"
+        android:layout_marginStart="339dp"
         android:layout_marginTop="108dp"
-        android:layout_marginEnd="339dp"
-        android:layout_marginRight="339dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTintMode="add" />
 
 </RelativeLayout>

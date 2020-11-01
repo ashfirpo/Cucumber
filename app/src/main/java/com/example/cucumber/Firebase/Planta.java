@@ -1,4 +1,4 @@
-package com.example.cucumber;
+package com.example.cucumber.Firebase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,26 +11,14 @@ public class Planta implements Serializable {
     private String descripcion;
     private String riego;
     private String maceta;
-    private ArrayList<Integer> plantar;
-    private  ArrayList<Integer> cosechar;
-    private ArrayList<String> extra;
+    private ArrayList<String> plantar = new ArrayList<>();
+    private ArrayList<String> cosechar = new ArrayList<>();
+    private ArrayList<String> extra = new ArrayList<>();
     private String imagen;
 
     public Planta()
     {}
 
-    public Planta(String id, String nombre, String desc, String riego, String maceta, ArrayList<Integer> plantar, ArrayList<Integer> cosechar, String imagen)
-    {
-        idPlanta=id;
-        this.nombre = nombre;
-        this.descripcion = desc;
-        this.riego = riego;
-        this.maceta = maceta;
-        this.plantar = plantar;
-        this.cosechar = cosechar;
-        this.extra = new ArrayList<String>();
-        this.imagen = imagen;
-    }
 
     public void setIdPlanta(String idPlanta)
     {
@@ -82,22 +70,22 @@ public class Planta implements Serializable {
         return maceta;
     }
 
-    public void setPlantar(ArrayList<Integer> plantar)
+    public void setPlantar(ArrayList<String> plantar)
     {
         this.plantar = plantar;
     }
 
-    public ArrayList<Integer> getPlantar()
+    public ArrayList<String> getPlantar()
     {
         return plantar;
     }
 
-    public void setCosechar(ArrayList<Integer> cosechar)
+    public void setCosechar(ArrayList<String> cosechar)
     {
         this.cosechar = cosechar;
     }
 
-    public ArrayList<Integer> getCosechar()
+    public ArrayList<String> getCosechar()
     {
         return cosechar;
     }

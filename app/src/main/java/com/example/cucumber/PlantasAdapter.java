@@ -1,6 +1,7 @@
 package com.example.cucumber;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.cucumber.Planta;
-import com.example.cucumber.R;
+import com.example.cucumber.Firebase.Planta;
 
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class PlantasAdapter extends BaseAdapter {
         TextView nombrePlanta = convertView.findViewById(R.id.nombreplantas);
 
         final Planta item = (Planta)getItem(position);
-        //imagen.setImageResource(item.getImagen());
+        imagen.setImageResource(item.getImagen());
         nombrePlanta.setText(item.getNombre());
 
         return convertView;

@@ -1,5 +1,7 @@
 package com.example.cucumber;
 
+import com.example.cucumber.Firebase.Planta;
+
 import java.util.List;
 
 public class DataPlantas {
